@@ -6,7 +6,7 @@ import {
 } from 'react'
 
 import { LOGGED_IN_KEY } from '~/constants/localStorage'
-import { useLocalStorage } from '~/hooks/useLocalStorage'
+import { useLocalStorageTest } from '~/hooks/useLocalStorageTest'
 
 type LoginStateContextReturn = {
   hasLoginStateFlag?: boolean
@@ -47,7 +47,7 @@ export const useLoginState = (): LoginStateContextReturn => {
 }
 
 const useProvideLoginState = () => {
-  const [hasLoginStateFlag, setLoginStateFlag] = useLocalStorage<boolean>(
+  const [hasLoginStateFlag, setLoginStateFlag] = useLocalStorageTest<boolean>(
     LOGGED_IN_KEY,
     undefined
   )

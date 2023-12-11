@@ -10,7 +10,7 @@ const ContentSecurityPolicy = `
   font-src 'self' https: data:;
   form-action 'self';
   frame-ancestors 'self';
-  img-src 'self' data: blob: ${
+  img-src 'self' https://cdn-icons-png.flaticon.com data: blob: ${
     // For displaying images from R2
     env.R2_PUBLIC_HOSTNAME ? `https://${env.R2_PUBLIC_HOSTNAME}` : ''
   };
@@ -45,7 +45,10 @@ const config = {
   /** We run eslint as a separate task in CI */
   eslint: { ignoreDuringBuilds: !!process.env.CI },
   images: {
-    domains: [env.R2_PUBLIC_HOSTNAME ?? ''].filter((d) => d),
+    domains: [
+      env.R2_PUBLIC_HOSTNAME ?? '',
+      'cdn-icons-png.flaticon.com',
+    ].filter((d) => d),
   },
   async headers() {
     return [
